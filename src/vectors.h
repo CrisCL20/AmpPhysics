@@ -5,29 +5,38 @@ namespace Vector {
 
 
 template <class T>
-class R2Vector {
-
+class Vector {
 public:
-    void R2Vector(T x, T y) {
-        this->ang = ang;
-        this->x = x; this->y = y;
-    }
+    void Vector(T x, T y) : x(x), y(y) {}
 
+    void Vector(T x, T y, T z) : x(x), y(y), z(z) {}
 
-    double norm() {
+    double norm2d() {
         return sqrt((this->x * this->x) + (this->y * this->y)) 
     }
 
-    template<class U> friend static R2Vector<U> operator+(R2Vector<U> a, R2Vector<U> b) {
-        return new R2Vector(a.x+b.x,a.y+b.y);
+    double norm3d() {
+        return sqrt((this->x * this->x) + (this->y * this->y) + (this->z * this->z))
     }
 
-    template<class U> friend U operator* ( R2Vector<U> a, R2Vector<U> b) { //dot product
+    template<class U> friend static Vector<U> operator+(Vector<U> a, Vector<U> b) {
+        return new Vector(a.x+b.x,a.y+b.y);
+    }
+
+    template<class U> friend static Vector<U> operator+(Vector<U> a, Vector<U> b) {
+        return new Vector(a.x+b.x,a.y+b.y,a.z+b.z);
+    }
+
+    template<class U> friend U operator* ( Vector<U> a, Vector<U> b) { //dot product
         return a.x * b.x  + a.y * b.y;
+    }
+
+    template<class U> friend U operator* ( Vector<U> a, Vector<U> b) { //dot product
+        return a.x * b.x  + a.y * b.y + a.z * b.z;
     }
 
 private:
     double ang;
-    T x,y;
+    T x,y,z;
 };
 }
