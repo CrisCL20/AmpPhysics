@@ -8,18 +8,20 @@ namespace Vector {
 template <class T>
 class vector {
 public:
-    vector(T x_, T y_) : x(x_),y(y_) {}
-    vector(T x_, T y_, T z_) : x(x_),y(y_),z(z_) {}
+    vector(T x_, T y_) : x(x_),y(y_) {} //R2
+    vector(T x_, T y_, T z_) : x(x_),y(y_),z(z_) {} //R3
     ~vector() {}
 
     double norm();
+    vector<T> unitary();
     void print();
     T getx();
     T gety();
     T getz();
 
-    template<class U> friend vector<U> operator+(vector<U> a, vector<U> b);
-    template<class M> friend M operator* ( vector<M> a, vector<M> b); //dot product
+    vector<T> operator+(vector<T> b);
+    T operator*(vector<T> b); //dot product
+    vector<T> operator*(double k); //scalar product
     
 private:
     T x,y,z {0};
@@ -56,15 +58,24 @@ T Vector::vector<T>::getz() {
     return z;
 }
 
-template <class U>
-Vector::vector<U> operator+(Vector::vector<U> a, Vector::vector<U> b) {
-    return new 
-        Vector::vector<U>(a.x+b.x,a.y+b.y,a.z+b.z);
+template <class T>
+Vector::vector<T> Vector::vector<T>::unitary() {
+    return Vector::vector<T>(x/norm(),y/norm(),z/norm());
 }
 
-template <class M> 
-M operator*(Vector::vector<M> a, Vector::vector<M> b) {
-    return a.x * b.x + a.y * b.y + a.z * b.z;
+template <class T>
+Vector::vector<T> Vector::vector<T>::operator+(Vector::vector<T> b) {
+    return vector<T>(x+b.x,y+b.y,z+b.z);
+}
+
+template <class T>
+T Vector::vector<T>::operator*(Vector::vector<T> b) {
+    return x * b.x + y * b.y + z * b.z;
+}
+
+template <class T>
+Vector::vector<T> Vector::vector<T>::operator*(double k){
+    return Vector::vector<T>(k*x,k*y,k*z);
 }
 
 #endif
