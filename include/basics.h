@@ -4,7 +4,7 @@
 namespace types{
     class integer {
         public:
-            integer(int x);
+            integer(int n);
             void print();    
         private:
             int x;
@@ -12,5 +12,13 @@ namespace types{
 
 
 }
+
+types::integer::integer(int n) : x(n) {}
+
+#include <iostream>
+void types::integer::print() {
+    std::cout << x << "\n";
+}
+
 
 #endif
