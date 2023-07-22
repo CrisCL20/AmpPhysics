@@ -1,3 +1,3 @@
 #!/bin/sh
 
-clang++ -o engine src/*.cc
+g++ -o engine src/*.cc -Iinclude/
