@@ -18,7 +18,7 @@ int main() {
 
     simulator.init();
 
-    system("clear");
+    (void)!system("clear");
 
 
     while(1) {
