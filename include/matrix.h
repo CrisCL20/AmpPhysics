@@ -1,19 +1,21 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-namespace linear {
+namespace Matrix {
     template <class U>
     class matrix {
         public:
             matrix(int nrows,int ncols); //creates matrix filled with zeros.
 
-            double det();
-            matrix inv();
-            matrix T(); 
+            ~matrix();
 
-            matrix operator+(matrix other);
-            matrix operator*(matrix other);
-            matrix operator*(const double k); 
+            double det();
+            matrix<double> inv();
+            matrix<U> T(); 
+
+            matrix<U> operator+(matrix<U> other);
+            matrix<U> operator*(matrix<U> other);
+            matrix<U> operator*(const double k); 
 
         private:
             int nRows;

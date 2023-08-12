@@ -3,6 +3,9 @@
  */
 
 #include "vectors.h"
+#include "basics.h"
+#include "moves.h"
+#include "matrix.h"
 #include <iostream>
 
 using namespace std;
@@ -23,6 +26,9 @@ int main() {
     x.print();
 
     cout << k << endl;
+
+
+    
 
     return 0;
 

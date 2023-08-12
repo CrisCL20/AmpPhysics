@@ -8,8 +8,8 @@ namespace linear{
     class object {
         public:
         
-        object(Vector::vector<double> pos) : obj_pos(pos) {}
-        object(double mass) : mass(mass) {}
+        object(Vector::vector<double> pos);
+        object(double mass_);
 
         void setPos(Vector::vector<double> pos);
         void setv_med(double v);
@@ -44,26 +44,5 @@ namespace linear{
             
     };
 }
-
-void linear::object::setPos(Vector::vector<double> pos) {
-    obj_pos = pos;
-}
-
-void linear::object::setv_med(double v) {
-    v_med = v;
-}
-
-void linear::object::setG(double g) {
-    G = g;
-}
-
-void linear::object::setPos_function(double (*pos_func)(double)) {
-    pos_function = pos_func;
-}
-
-Vector::vector<double> linear::object::getPos() {
-    return obj_pos;
-}
-
 
 #endif
