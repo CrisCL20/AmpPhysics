@@ -21,7 +21,7 @@ double methods::simpson(double (*f)(double),double A, double B) {
 
     it_1 = 4*it_1;
 
-    for(size_t i = 0; i <= (n/2) - 1; ++i) {
+    for(size_t i = 2; i <= (n/2) - 1; ++i) {
         x_it2 = A + (2*i)*h;
         it_2 += f(x_it2);
     }
