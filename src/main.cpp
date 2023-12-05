@@ -8,7 +8,6 @@
 #include "matrix.h"
 #include "graphics.h"
 #include <iostream>
-#include <SDL2/SDL.h>
 
 using namespace std;
 
