@@ -2,7 +2,7 @@
 
 linear::object::object(Vector::vector<double> pos) : obj_pos(pos) {}
 
-linear::object::object(double mass_) : mass(mass_) {}
+//linear::object::object(double mass_) : mass(mass_) {}
 
 void linear::object::setPos(Vector::vector<double> pos) {
     obj_pos = pos;
