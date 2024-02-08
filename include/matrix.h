@@ -16,7 +16,7 @@ namespace Matrix {
             ~matrix() {}
             
             /* Common matrix characteristics and properties */
-            
+            void print(); 
             void ones(); //fills matrix A with ones 
             void fill(const U n);
             double determinant();

@@ -1,4 +1,7 @@
 #include <matrix.h>
+#include <Except.hpp>
+#include <stdlib.h>
+#include <iostream>
 
 template <typename U>
 Matrix::matrix<U>::matrix(const std::size_t nrows, const std::size_t ncols) {
@@ -13,6 +16,16 @@ Matrix::matrix<U>::matrix(const std::size_t nrows, const std::size_t ncols) {
 template <typename U>
 Matrix::matrix<U>::matrix() {
   matdata = 0x0;
+}
+
+template <typename U>
+void Matrix::matrix<U>::print()
+{
+  for(std::size_t i=1;i <= nRows; ++i){
+    for(std::size_t j=1; j <= nCols; ++j)
+      std::cout << matdata[(i-1)*nCols+j] << ", ";
+    std::cout << std::endl;
+  }
 }
 
 template <typename U>
@@ -31,7 +44,7 @@ Matrix::matrix<U> Matrix::matrix<U>::operator+(Matrix::matrix<U> B) {
    
     if( (nRows != B.nRows) || (nCols != B.nCols))
     {
-      throw "Cannot perform matrix addition\n";
+      throw Except("Cannot perform matrix addition\n");
       exit(0);
     }
 
@@ -39,7 +52,7 @@ Matrix::matrix<U> Matrix::matrix<U>::operator+(Matrix::matrix<U> B) {
 
     for(size_t i = 1; i <= nRows; ++i) 
         for(size_t j = 1; j <= nCols; ++j)
-            C.matdata[(i-1)*nCols + j] = matdata[(i-1)*nCols + j] + B.matdata[(i-1)*nCols + j];
+            C.putData(i,j,matdata[(i-1)*nCols + j] + B.matdata[(i-1)*nCols + j]);
     return C;     
     
 }
@@ -47,9 +60,10 @@ Matrix::matrix<U> Matrix::matrix<U>::operator+(Matrix::matrix<U> B) {
 template<typename U>
 Matrix::matrix<U> Matrix::matrix<U>::operator*(Matrix::matrix<U> B) 
 { 
-  if(nCols != B.nRows){
+  if(nCols != B.nRows)
+  {
 
-    throw "Can not perform matrix multiplication\n";
+    throw Except("Can not perform matrix multiplication\n");
     exit(0);
   }
 
@@ -67,7 +81,10 @@ template<typename U>
 Matrix::matrix<U> Matrix::matrix<U>::operator&(Matrix::matrix<U> B)
 {
   if(nRows != B.nRows || nCols != B.nCols)
-    throw "Can not perform element-wise multiplication\n";
+  {
+    throw Except("Can not perform element-wise multiplication\n");
+    exit(0);
+  }
 
   Matrix::matrix<U> C(nRows,nCols);
   for(std::size_t i = 1; i <= nRows; ++i)
