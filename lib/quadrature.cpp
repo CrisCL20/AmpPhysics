@@ -40,6 +40,7 @@ double new_f(double (*f)(double),double a,double t) {
 * @details https://en.wikipedia.org/wiki/Numerical_integration
 */
 double methods::gauss_laguerre(double (*f)(double), double x) {
-    
+  f(x);   
+  return x;   
     //return methods::simpson(new_f(f,0,),0,1);
 }
